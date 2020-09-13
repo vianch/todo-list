@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import get from 'lodash/get';
 
+// Services
+import { httpGet } from "./services/rest.api";
+
+// Component
 import { List, AddList } from './components';
+import { endpoints } from "./services/constants";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -10,6 +16,21 @@ const App = () => {
       setTodoList(prevArray => [...prevArray, listItem]);
     }
   };
+
+  const loadTodos = () => {
+    httpGet(endpoints.getTodos())
+      .then(response => {
+        if(response.success) {
+          const todoData = get(response, 'todo', []);
+          setTodoList(todoData);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   return (
     <div>

@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
 // core
 const restApiEnvironmentSetup = require('./core/env');
 const databaseConnector = require('./core/database');
+const corsOptions = require('./core/cors');
 
 // Routes
 const todoRoutes = require('./routes');
@@ -16,6 +18,7 @@ const { DB_USERNAME, DB_PASSWORD, DB_CLUSTER, DB_NAME } = process.env;
 /* Database configuration */
 databaseConnector(DB_CLUSTER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
+app.use(cors(corsOptions));
 app.use(todoRoutes);
 
 app.listen(port, () => {

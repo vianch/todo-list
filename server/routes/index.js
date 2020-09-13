@@ -11,11 +11,11 @@ app.get(`${apiVersionPrefix}${todoPrefix}/get-todos`, (request, response) => {
   });
 });
 
-app.put(`${apiVersionPrefix}${todoPrefix}/set-todo`, () => {
+app.put(`${apiVersionPrefix}${todoPrefix}/complete-todo`, () => {
 
 });
 
-app.delete(`${apiVersionPrefix}${todoPrefix}/delet-todo/:id`, () => {
+app.delete(`${apiVersionPrefix}${todoPrefix}/delete-todo/:id`, () => {
 
 });
 
