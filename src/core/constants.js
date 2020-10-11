@@ -6,8 +6,8 @@ export const httpCodes = {
 };
 
 export const httpMethods = {
-  delete: 'delete',
   get: 'get',
+  delete: 'delete',
   post: 'post',
   put: 'put',
 };

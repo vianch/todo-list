@@ -1,19 +1,24 @@
 const mongoose = require('mongoose');
 
-const TodoSchema = new mongoose.Schema(
+const ToDoSchema = new mongoose.Schema(
   {
-    id: {
+    id:{
       type: String,
-      unique: true
+      unique: true,
+      required: true,
     },
-    task: String,
+    task:{
+      type: String,
+      required: true,
+    },
+    completed: Boolean
   },
-  { collection: 'tasks' }
+  {collection: 'tasks'}
 );
 
-TodoSchema.index({
+ToDoSchema.index({
   id: 1,
   task: -1,
 });
 
-module.exports = mongoose.model('Tasks', TodoSchema);
+module.exports = mongoose.model('Tasks', ToDoSchema);

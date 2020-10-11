@@ -3,16 +3,16 @@ const environments = {
   production: 'production',
 };
 
-// Router constants
-const apiVersionPrefix = '/api/v1';
-const  todoPrefix = '/todo';
+const setDBString = (dataBaseName, dataBasePassword, dataBaseuser, cluster) =>
+  `mongodb+srv://${dataBaseuser}:${dataBasePassword}@${cluster}/${dataBaseName}?retryWrites=true&w=majority`;
 
-const setConnectionString = (cluster, dbUser, dbPassword, dbName) =>
-  `mongodb+srv://${dbUser}:${dbPassword}@${cluster}/${dbName}?retryWrites=true&w=majority`;
+const apiVersionPrefix = '/api/v1';
+
+const toDoPrefix = '/todo';
 
 module.exports = {
   environments,
-  setConnectionString,
+  setDBString,
   apiVersionPrefix,
-  todoPrefix,
+  toDoPrefix,
 };

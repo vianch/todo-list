@@ -1,29 +1,30 @@
 {
-  "name": "todo-list",
+  "name": "todolist",
   "version": "1.0.0",
   "description": "my own todo list",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "dev": "NODE_ENV=development node server/index.js",
-    "build": "react-scripts build"
+    "dev": "set NODE_ENV=development && node server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vianch/todo-list.git"
+    "url": "git+https://github.com/Ingridaceg/ToDoList.git"
   },
   "keywords": [
-    "todo",
+    "to",
+    "do",
     "list",
     "react"
   ],
-  "author": "VIANCH",
+  "author": "Ingrid Acero",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vianch/todo-list/issues"
+    "url": "https://github.com/Ingridaceg/ToDoList/issues"
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -32,7 +33,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "uid": "^1.0.0"
   },
   "browserslist": {
     "production": [

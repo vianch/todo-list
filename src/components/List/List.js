@@ -1,30 +1,47 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Proptypes from 'prop-types';
 
-const List = ({ todoList }) => {
+const List = ({ todolist, onUpdateItem, onDeleteItem }) => {
+  
   return (
     <ul>
-      {todoList.length === 0 && (
-        <li>EMPTY TODO</li>
+      
+      {todolist.length === 0 && (
+        <li>You are Free!!</li>
       )}
-
-      {todoList.map(itemList => (
-        <li key={`item_${itemList.id}`}>{itemList.task}</li>
+      
+      {todolist.map((todoItem) => (
+        <li key={`todoItem_${todoItem.id}`}>{todoItem.task}
+          <input
+            checked={todoItem.completed}
+            id="completed"
+            name="completed"
+            type="checkbox"
+            onChange={() => onUpdateItem(todoItem)}
+          />
+          <img src= "images/delete.svg"
+               height= "18"
+               alt="delete"
+               style={{cursor: "pointer"}}
+               onClick={() => onDeleteItem(todoItem)}/>
+        </li>
       ))}
     </ul>
   );
 };
 
 List.propTypes = {
-  todoList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    task: PropTypes.string,
+  todolist: Proptypes.arrayOf(Proptypes.shape({
+    id: Proptypes.string,
+    task: Proptypes.string,
+    completed: Proptypes.bool,
   })),
+  onUpdateItem: Proptypes.func.isRequired,
+  onDeleteItem: Proptypes.func.isRequired,
 };
 
 List.defaultProps = {
-  todoList: [],
-};
+  todolist: [],
+}
 
 export default List;
-

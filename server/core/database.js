@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
-const { setConnectionString } = require('./constants');
+const { setDBString } = require('./constants');
 
-const databaseConnector = (cluster, username, password, databaseName) => {
-  const connectionOptions = {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
+const dataBaseConnector = (dataBaseName, dataBaseUser, dataBasePassword, cluster) => {
+    const connectionOptions = {
+      useNewUrlParser:true,
+      useCreateIndex:true,
+      useUnifiedTopology:true
   };
-  const connectionUrl = setConnectionString(cluster, username, password, databaseName);
-console.log('URL: ', connectionUrl);
-
- mongoose.connect(connectionUrl, connectionOptions);
-
+  const connectionString = setDBString(dataBaseName, dataBaseUser, dataBasePassword, cluster);
+  mongoose.connect(connectionString, connectionOptions);
+  
+  mongoose.connection.on('open', () => {
+    console.log('connected');
+  });
+  
   mongoose.connection.on('error', error => {
     console.error('Something happened: ', error);
   });
-
- mongoose.connection.on('open', () => {
-   console.log('Connected to MongoDB database.');
- });
-
-
+  
 };
 
-module.exports = databaseConnector;
-
-
+module.exports = dataBaseConnector;

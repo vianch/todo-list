@@ -1,11 +1,14 @@
 const dotenv = require('dotenv');
-const { resolve } = require('path');
+const { resolve }  = require('path');
+const { environments } = require('./constants');
 
-const restApiEnvironmentSetup = () => {
-  const configFileName = `.env.${process.env.NODE_ENV}`;
-  const configPath = resolve(process.cwd(), configFileName);
-
-  dotenv.config({ path: configPath });
+const environmentSetup = () => {
+  if (process.env.NODE_ENV) {
+    console.log('process.env.NODE_ENV ', process.env.NODE_ENV );
+    const path = process.env.NODE_ENV === environments.production ? './.env.production' : './.env.development';
+    dotenv.config({ path });
+  }
+ 
 };
 
-module.exports = restApiEnvironmentSetup
+module.exports = environmentSetup;

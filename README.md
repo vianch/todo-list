@@ -1,2 +1,2 @@
-# todo-list
-my own todo list
+# ToDoList
+my own to do list

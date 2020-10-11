@@ -1,9 +1,9 @@
-const whiteList = ['http://localhost:3000', 'http://localhost:5000'];
+const whiteList = ['http://localhost:3000','http://localhost:5000'];
 
-const corsOptions = {
+const corsOptions= {
   origin: (origin, callback) => {
-    if(origin) {
-      if(whiteList.indexOf(origin) !== -1) {
+    if(origin){
+      if (whiteList.indexOf(origin) !== -1){
         callback(null, true);
       } else {
         callback(new Error(`This origin is not allowed: ${origin}`));
@@ -11,9 +11,7 @@ const corsOptions = {
     } else {
       callback(null, true);
     }
-
   },
-  credentials: true
 };
 
-module.exports = corsOptions;
+module.exports= corsOptions;
